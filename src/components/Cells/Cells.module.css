@@ -1,0 +1,23 @@
+.cells__container {
+    display: flex;
+}
+
+.table {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+
+.table__cell {
+    max-width: 92px;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #000000;
+}
+
+.table__cell_header {
+    width: 92px;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #000000;
+    background-color: #dddddd;
+}

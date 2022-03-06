@@ -1,0 +1,14 @@
+.date-input {
+    width: 150px;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.date-input--invalid {
+    background-color: #ff9999;
+}
+
+.button {
+    margin-top: 10px;
+    width: 150px;
+}

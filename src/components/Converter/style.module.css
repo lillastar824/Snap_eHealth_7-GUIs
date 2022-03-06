@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.separator {
+  margin: 0 20px;
+}
+
+.item {
+  display: flex;
+}
+
+.item__title {
+  margin-right: 10px;
+}
+
+.item__input {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.item__input--error {
+  background-color: #ff7f50;
+}

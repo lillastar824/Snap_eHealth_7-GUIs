@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.container {
+    border: 1px solid #777;
+    border-radius: 3px
+}
+
+.inner-container {
+    padding: 30px;
+}
+
+.title {
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid #777;
+}
