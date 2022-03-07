@@ -16,11 +16,15 @@
 
 .item__title {
   margin-right: 10px;
+  align-items: center;
+  display: flex;
 }
 
 .item__input {
-  padding: 5px;
   border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  max-width: 80px;
 }
 
 .item__input--error {

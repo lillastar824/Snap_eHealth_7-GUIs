@@ -1,7 +1,15 @@
+.flightType {
+    padding: 5px;
+    height: 35px;
+    font-size: 16px;
+}
 .date-input {
-    width: 150px;
     box-sizing: border-box;
     margin-top: 10px;
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    padding: 5px 10px;
 }
 
 .date-input--invalid {
@@ -11,4 +19,6 @@
 .button {
     margin-top: 10px;
     width: 150px;
+    height: 30px;
+    font-size: 16px;
 }

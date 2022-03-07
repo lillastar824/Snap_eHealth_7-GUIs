@@ -112,7 +112,7 @@ export const Crud: React.FC = () => {
     <Wrapper title='Crud'>
       <div className={styles.crud__wrapper}>
         <div className={styles.crud__label}>
-          <Input title='Filter Prefix:' {...filterInput} />
+          <Input className={styles.crud__prefix} title='Filter Prefix:' {...filterInput} />
         </div>
         <div className={styles.crud__form}>
           <div className={styles.form}>
@@ -121,14 +121,15 @@ export const Crud: React.FC = () => {
                 <Select
                   id='Users'
                   name='Users'
+                  className={styles.data_list}
                   options={options}
                   onSelect={onSelect}
                   size={5}
                 />
               </div>
               <div className={styles.form__inputs}>
-                <Input title='Name:' {...nameInput} />
-                <Input title='Surname:' {...surnameInput} />
+                <Input className={styles.input_data} title='Name:' {...nameInput} />
+                <Input className={styles.input_data} title='Surname:' {...surnameInput} />
               </div>
             </div>
             <div className={styles.form__buttons}>

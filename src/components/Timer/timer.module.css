@@ -8,17 +8,21 @@
   width: 100%;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .leftColumn {
   width: 30%;
+  font-size: 18px;
 }
 
 .rightColumn {
   width: 70%;
+  height: 100%;
 }
 
 .button {
-  margin-top: 10px;
   width: 100%;
+  font-size: 16px;
+  padding: 8px;
 }

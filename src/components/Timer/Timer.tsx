@@ -44,8 +44,7 @@ const Timer: FC = () => {
         </div>
 
         <div className={styles.row}>
-          <div className={styles.leftColumn} />
-          <div className={styles.rightColumn}>{`${maxCount / 10}s`}</div>
+          <div className={styles.leftColumn}>{`${maxCount / 10}s`}</div>
         </div>
 
         <div className={styles.row}>

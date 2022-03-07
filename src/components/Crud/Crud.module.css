@@ -1,12 +1,15 @@
 .crud__wrapper {
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
 }
 
 .crud__label {
-    width: 225px;
     margin-bottom: 10px;
+    max-width: 250px;
 }
+.crud__prefix {
 
+}
 .crud__form {
     display: flex;
     justify-content: space-between;
@@ -17,7 +20,11 @@
     width: 100%;
     flex-direction: column;
 }
-
+.data_list {
+    padding: 6px;
+    width: 170px;
+    font-size: 16px;
+}
 .form__body {
     display: flex;
     justify-content: space-between;
@@ -39,5 +46,9 @@
     display: flex;
     justify-content: space-between;
     width: 250px;
-    margin-top: 10px;
+    margin-top: 20px;
+}
+.form__buttons button {
+    font-size: 14px;
+    padding: 5px 15px;
 }
