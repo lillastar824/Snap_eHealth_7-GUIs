@@ -70,7 +70,6 @@ const FlightBooker: FC = () => {
     <Wrapper title='Flight Booker'>
       <Select
         id='flightType'
-        className='flightType'
         name='type'
         options={flightTypeOptions}
         onSelect={onSelect}
