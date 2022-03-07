@@ -112,7 +112,7 @@ export const Crud: React.FC = () => {
     <Wrapper title='Crud'>
       <div className={styles.crud__wrapper}>
         <div className={styles.crud__label}>
-          <Input 
+          <Input
             className={styles.crud__prefix}
             title='Filter Prefix:'
             {...filterInput}
@@ -137,10 +137,10 @@ export const Crud: React.FC = () => {
                   title='Name:'
                   {...nameInput}
                 />
-                <Input 
-                  className={styles.input_data} 
-                  title='Surname:' 
-                  {...surnameInput} 
+                <Input
+                  className={styles.input_data}
+                  title='Surname:'
+                  {...surnameInput}
                 />
               </div>
             </div>
