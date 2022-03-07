@@ -125,7 +125,6 @@ export const Crud: React.FC = () => {
                 <Select
                   id='Users'
                   name='Users'
-                  className={styles.data_list}
                   options={options}
                   onSelect={onSelect}
                   size={5}
