@@ -15,6 +15,7 @@
 }
 
 .circle {
+    z-index: 1;
     position: absolute;
     border-radius: 50%;
     width: 30px;
@@ -24,4 +25,17 @@
 
 .circle:hover {
     background: #eee;
+}
+
+.modal {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #777;
+    position: absolute;
+    background-color: #fff;
+    z-index: 2;
+}
+
+.rangeInput {
+    width: 100%;
 }

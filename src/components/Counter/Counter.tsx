@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Wrapper, Button } from 'ui';
 
 import styles from './style.module.css';
 
-const Counter = () => {
+const Counter: FC = () => {
   const [count, setCount] = useState(0);
 
   const increment = () => {

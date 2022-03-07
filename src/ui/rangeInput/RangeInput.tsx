@@ -7,6 +7,7 @@ const RangeInput: FC<RangeInputProps> = ({
   max,
   value,
   onChange,
+  onMouseUp,
   className,
 }) => (
   <input
@@ -14,6 +15,7 @@ const RangeInput: FC<RangeInputProps> = ({
     min={min}
     value={value}
     onChange={onChange}
+    onMouseUp={onMouseUp}
     max={max}
     className={className}
   />

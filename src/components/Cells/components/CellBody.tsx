@@ -4,6 +4,7 @@ import { Input } from 'ui';
 import { useInput, useInputShow } from 'hooks';
 
 import { ReducerTypes, CellBodyProps } from '../types';
+import { isNumber } from '../helpers';
 import styles from '../Cells.module.css';
 
 const CellBody: FC<CellBodyProps> = ({
@@ -15,44 +16,42 @@ const CellBody: FC<CellBodyProps> = ({
   const showInput = useInputShow();
   const textInput = useInput(value || '');
 
+  const handleStopEdit = () => {
+    showInput.onHidden();
+
+    dispatch({
+      type: ReducerTypes.ADD_OR_UPDATE,
+      payload: {
+        id,
+        value: textInput.value,
+      },
+    });
+  };
+
+  const displayValue =
+    renderValue !== '' && isNumber(renderValue)
+      ? Number(renderValue).toFixed(1)
+      : renderValue;
+
   return (
     <td
       className={styles.table__cell}
-      onClick={() => {
-        showInput.onShow();
-      }}
+      onClick={showInput.onShow}
       onKeyDown={(event) => {
         if (event.key === 'Enter') {
-          showInput.onHidden();
-
-          dispatch({
-            type: ReducerTypes.ADD_OR_UPDATE,
-            payload: {
-              id,
-              value: textInput.value,
-            },
-          });
+          handleStopEdit();
         }
       }}
     >
       {showInput.show ? (
         <Input
           {...textInput}
-          onBlur={() => {
-            showInput.onHidden();
-
-            dispatch({
-              type: ReducerTypes.ADD_OR_UPDATE,
-              payload: {
-                id,
-                value: textInput.value,
-              },
-            });
-          }}
+          onBlur={handleStopEdit}
+          className={styles.input}
           autoFocus
         />
       ) : (
-        renderValue
+        displayValue
       )}
     </td>
   );

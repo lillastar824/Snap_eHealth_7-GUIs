@@ -10,9 +10,10 @@ export const useConverterItem: UseConverterItem = () => {
   useEffect(() => {
     if (validateNumberInput(value) || value === '') {
       setInputError(false);
-    } else {
-      setInputError(true);
+      return;
     }
+
+    setInputError(true);
   }, [value]);
 
   return [value, setValue, inputError];

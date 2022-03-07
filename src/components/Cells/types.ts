@@ -31,3 +31,13 @@ export type CellState = Record<string, CellValue>;
 export type CellReducer = (state: CellState, action: CellAction) => CellState;
 
 export type CellActionHandlers = Record<ReducerType, CellReducer>;
+
+export type FormulaResolver = (state: CellState, value: string) => string;
+
+export type OperationResolver = (
+  state: CellState,
+  range: string,
+  operation: Operation,
+) => string;
+
+export type Operation = (vals: number[]) => number;

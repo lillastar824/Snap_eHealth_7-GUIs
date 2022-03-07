@@ -1,3 +1,5 @@
+import { RefObject, Dispatch, SetStateAction } from 'react';
+
 export enum ReducerTypes {
   ADD = 'ADD',
   RESIZE = 'RESIZE',
@@ -18,7 +20,7 @@ export type Circles = Record<number, Circle>;
 export type CircleState = {
   circles: Circles;
   order: number[];
-  cache: number[];
+  cache: Circle[];
 };
 
 export type CircleAction = {
@@ -36,4 +38,19 @@ export type CircleActionHandlers = Record<ReducerType, CircleReducer>;
 export type CirclePosition = {
   x: number;
   y: number;
+};
+
+export type CircleProps = {
+  circle: Circle;
+  selectedCircle: Circle | null;
+  selectCircle: Dispatch<SetStateAction<Circle | null>>;
+  setSelectedCircleRef: Dispatch<
+    SetStateAction<RefObject<HTMLDivElement> | null>
+  >;
+};
+
+export type ResizeModalProps = {
+  circle: Circle;
+  updateRadius: (id: number, radius: number) => void;
+  selectedCircleRef: RefObject<HTMLDivElement>;
 };

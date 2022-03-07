@@ -1,4 +1,4 @@
-import React, { FC, useReducer, useRef } from 'react';
+import React, { FC, RefObject, useReducer, useState, useRef } from 'react';
 
 import { Button, Wrapper } from 'ui';
 
@@ -11,7 +11,10 @@ import {
   CircleReducer,
   Circles,
   ReducerTypes,
+  Circle as CircleType,
 } from './types';
+import { Circle } from './components/Circle';
+import { ResizeModal } from './components/ResizeModal';
 import styles from './drawer.module.css';
 
 const ACTION_HANDLERS: CircleActionHandlers = {
@@ -67,7 +70,8 @@ const ACTION_HANDLERS: CircleActionHandlers = {
 
     const removedId = order[order.length - 1];
     const nextOrder = order.slice(0, order.length - 1);
-    const nextCache = [...cache, order[order.length - 1]];
+    const nextCache = [...cache, circles[order[order.length - 1]]];
+
     const nextCircles = Object.entries(circles).reduce<Circles>(
       (currentCircles, [entryKey, entryValue]) => {
         if (removedId === Number(entryKey)) {
@@ -88,7 +92,27 @@ const ACTION_HANDLERS: CircleActionHandlers = {
     };
   },
   [ReducerTypes.REDO]: (state) => {
-    return { ...state };
+    const { order, cache, circles } = state;
+
+    if (cache.length === 0) {
+      return state;
+    }
+
+    const cachedCircle = cache[cache.length - 1];
+
+    const nextCache = cache.slice(0, order.length - 1);
+    const nextOrder = [...order, cachedCircle.id];
+    const nextCircles = {
+      ...circles,
+      [cachedCircle.id]: cachedCircle,
+    };
+
+    return {
+      ...state,
+      order: nextOrder,
+      cache: nextCache,
+      circles: nextCircles,
+    };
   },
 };
 
@@ -103,6 +127,12 @@ const CircleDrawer: FC = () => {
     circlesReducer,
     initialCircleState,
   );
+
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [selectedCircleRef, setSelectedCircleRef] =
+    useState<RefObject<HTMLDivElement> | null>(null);
+
+  const [selectedCircle, selectCircle] = useState<CircleType | null>(null);
 
   const addCircle = (position: CirclePosition) => {
     dispatch({
@@ -134,7 +164,10 @@ const CircleDrawer: FC = () => {
   };
 
   const onAreaClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const rect = divRef.current?.getBoundingClientRect();
+    setSelectedCircleRef(null);
+    selectCircle(null);
+
+    const rect = wrapperRef.current?.getBoundingClientRect();
 
     if (rect) {
       addCircle({
@@ -143,8 +176,6 @@ const CircleDrawer: FC = () => {
       });
     }
   };
-
-  const divRef = useRef<HTMLDivElement>(null);
 
   return (
     <Wrapper title='Circle drawer'>
@@ -160,17 +191,23 @@ const CircleDrawer: FC = () => {
           disabled={circlesState.cache.length === 0}
         />
       </div>
-      <div ref={divRef} className={styles.circleArea} onClick={onAreaClick}>
+      <div ref={wrapperRef} className={styles.circleArea} onClick={onAreaClick}>
         {Object.values(circlesState.circles).map((circle) => (
-          <div
+          <Circle
             key={circle.id}
-            className={styles.circle}
-            style={{
-              left: circle.position.x - circle.radius / 2,
-              top: circle.position.y - circle.radius / 2,
-            }}
+            circle={circle}
+            setSelectedCircleRef={setSelectedCircleRef}
+            selectedCircle={selectedCircle}
+            selectCircle={selectCircle}
           />
         ))}
+        {selectedCircle && selectedCircleRef && (
+          <ResizeModal
+            circle={selectedCircle}
+            selectedCircleRef={selectedCircleRef}
+            updateRadius={updateRadius}
+          />
+        )}
       </div>
     </Wrapper>
   );

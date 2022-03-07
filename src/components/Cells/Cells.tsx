@@ -12,7 +12,7 @@ import {
   CellReducer,
   CellState,
 } from './types';
-import { getIdFromParts, operateValue } from './helpers';
+import { getIdFromParts, resolveOperation } from './helpers';
 import styles from './Cells.module.css';
 
 const ACTION_HANDLERS: CellActionHandlers = {
@@ -23,25 +23,31 @@ const ACTION_HANDLERS: CellActionHandlers = {
 
     const { value, id } = payload;
     const renderValue = value.includes('=')
-      ? operateValue(state, value)
+      ? resolveOperation(state, value)
       : value;
 
     const updatedCellData = { id, value, renderValue };
 
-    const nextState = Object.entries(state).reduce<CellState>(
+    const updatedState = { ...state, [id]: updatedCellData };
+
+    const nextState = Object.entries(updatedState).reduce<CellState>(
       (currentState, [entryKey, entryValue]) => {
         if (entryKey === id) {
-          currentState[entryKey] = updatedCellData;
-
           return currentState;
         }
 
-        const nextValue = { ...entryValue };
+        const nextValue = {
+          ...entryValue,
+          renderValue: entryValue.value.includes('=')
+            ? resolveOperation(currentState, entryValue.value)
+            : entryValue.value,
+        };
+
         currentState[entryKey] = nextValue;
 
         return currentState;
       },
-      {},
+      updatedState,
     );
 
     if (!nextState[id]) {

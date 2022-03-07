@@ -16,8 +16,8 @@ function App(): JSX.Element {
       <FlightBooker />
       <Crud />
       <Timer />
-      <Cells />
       <CircleDrawer />
+      <Cells />
     </div>
   );
 }

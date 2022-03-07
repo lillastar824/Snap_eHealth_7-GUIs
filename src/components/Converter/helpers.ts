@@ -4,7 +4,7 @@ import {
   ChangeTemperatureValue,
 } from './types';
 
-export const validateNumberInput = (value: TemperatureValue) => {
+export const validateNumberInput = (value: TemperatureValue): boolean => {
   const stringValue = String(value);
 
   return String(parseFloat(stringValue)) === stringValue;
@@ -16,7 +16,7 @@ export const createChangeHandler =
     setConvertedValue: ChangeTemperatureValue,
     converter?: ConverterFunc,
   ) =>
-  (event: React.ChangeEvent<HTMLInputElement>) => {
+  (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.target;
     const isNumber = validateNumberInput(value);
 

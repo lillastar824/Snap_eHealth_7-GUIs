@@ -1,10 +1,12 @@
 import React from 'react';
 import { datePattern } from './constants';
 
-export const getTimestamp = (value: string) => new Date(value).getTime();
+export const getTimestamp = (value: string): number =>
+  new Date(value).getTime();
 
 export const validateInput =
-  (callback: (isValid: boolean) => void) => (value: string) => {
+  (callback: (isValid: boolean) => void) =>
+  (value: string): void => {
     if (value === '') {
       callback(true);
       return;
@@ -15,7 +17,7 @@ export const validateInput =
 
 export const createChangeHandler =
   (setValue: (value: string) => void, validateValue: (value: string) => void) =>
-  (e: React.ChangeEvent<HTMLInputElement>) => {
+  (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setValue(value);
     validateValue(value);
