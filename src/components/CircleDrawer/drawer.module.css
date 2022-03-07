@@ -3,7 +3,11 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 10px;
+    padding-bottom: 10px;
+}
+.buttonWrapper button {
+    font-size: 16px;
+    padding: 5px 15px;
 }
 
 .circleArea {
