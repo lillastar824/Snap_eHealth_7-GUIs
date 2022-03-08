@@ -12,5 +12,6 @@
     min-width: 60px;
     border-radius: 5px;
     border: 1px solid #777;
+    font-size: 16px;
     box-sizing: content-box;
 }

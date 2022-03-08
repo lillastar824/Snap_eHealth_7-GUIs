@@ -16,10 +16,14 @@ const Timer: FC = () => {
 
     if (nextCount !== maxCount) {
       setMaxCount(nextCount);
+      if (currentCount > maxCount) {
+        setCurrentCount(nextCount + 1);
+      }
     }
   };
 
   useEffect(() => {
+    if (currentCount > maxCount) return;
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
     }

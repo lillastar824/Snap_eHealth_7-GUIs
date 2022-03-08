@@ -1,11 +1,11 @@
 .crud__wrapper {
-    max-width: 400px;
+    max-width: 440px;
     width: 100%;
 }
 
 .crud__label {
     margin-bottom: 10px;
-    max-width: 250px;
+    display: inline-block;
 }
 .crud__prefix {
 
@@ -19,6 +19,11 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+}
+.crud__wrapper input {
+    padding: 10px;
+    margin: 5px 0;
+
 }
 .data_list {
     padding: 6px;
@@ -39,7 +44,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 60px;
+
+    margin-left: 20px;
 }
 
 .form__buttons {
@@ -52,3 +58,4 @@
     font-size: 14px;
     padding: 5px 15px;
 }
+
