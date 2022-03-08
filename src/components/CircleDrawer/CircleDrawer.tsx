@@ -179,35 +179,41 @@ const CircleDrawer: FC = () => {
 
   return (
     <Wrapper title='Circle drawer'>
-      <div className={styles.buttonWrapper}>
-        <Button
-          label='Undo'
-          onClick={undo}
-          disabled={circlesState.order.length === 0}
-        />
-        <Button
-          label='Redo'
-          onClick={redo}
-          disabled={circlesState.cache.length === 0}
-        />
-      </div>
-      <div ref={wrapperRef} className={styles.circleArea} onClick={onAreaClick}>
-        {Object.values(circlesState.circles).map((circle) => (
-          <Circle
-            key={circle.id}
-            circle={circle}
-            setSelectedCircleRef={setSelectedCircleRef}
-            selectedCircle={selectedCircle}
-            selectCircle={selectCircle}
+      <div className={styles.wrapper}>
+        <div className={styles.buttonWrapper}>
+          <Button
+            label='Undo'
+            onClick={undo}
+            disabled={circlesState.order.length === 0}
           />
-        ))}
-        {selectedCircle && selectedCircleRef && (
-          <ResizeModal
-            circle={selectedCircle}
-            selectedCircleRef={selectedCircleRef}
-            updateRadius={updateRadius}
+          <Button
+            label='Redo'
+            onClick={redo}
+            disabled={circlesState.cache.length === 0}
           />
-        )}
+        </div>
+        <div
+          ref={wrapperRef}
+          className={styles.circleArea}
+          onClick={onAreaClick}
+        >
+          {Object.values(circlesState.circles).map((circle) => (
+            <Circle
+              key={circle.id}
+              circle={circle}
+              setSelectedCircleRef={setSelectedCircleRef}
+              selectedCircle={selectedCircle}
+              selectCircle={selectCircle}
+            />
+          ))}
+          {selectedCircle && selectedCircleRef && (
+            <ResizeModal
+              circle={selectedCircle}
+              selectedCircleRef={selectedCircleRef}
+              updateRadius={updateRadius}
+            />
+          )}
+        </div>
       </div>
     </Wrapper>
   );

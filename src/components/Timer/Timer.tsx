@@ -23,16 +23,18 @@ const Timer: FC = () => {
   };
 
   useEffect(() => {
-    if (currentCount > maxCount) return;
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
     }
+
+    if (currentCount > maxCount) return;
+
     const timeoutId = setTimeout(() => {
       setCurrentCount((count) => count + 1);
     }, 100);
 
     timeoutIdRef.current = Number(timeoutId);
-  }, [currentCount]);
+  }, [currentCount, maxCount]);
 
   return (
     <Wrapper title='Timer'>

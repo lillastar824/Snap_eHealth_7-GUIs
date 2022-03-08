@@ -1,15 +1,23 @@
 .cells__container {
     display: flex;
+    overflow: scroll;
+    height: 600px;
 }
 
 .table {
     border: 1px solid #000000;
+    position: relative;
     border-collapse: collapse;
+}
+
+.table__th {
+    position: sticky;
 }
 
 .table__cell {
     max-width: 92px;
     height: 32px;
+    min-width: 95px;
     text-align: center;
     border: 1px solid #000000;
 }
@@ -17,6 +25,7 @@
 .table__cell_header {
     width: 92px;
     height: 32px;
+    font-weight: 400;
     text-align: center;
     border: 1px solid #000000;
     background-color: #dddddd;
@@ -25,3 +34,11 @@
 .input {
     min-width: 10px;
 }
+
+
+@media (max-width: 400px) {
+    .table__cell {
+        min-width: 50px;
+        max-width: 50px;
+    }
+  }

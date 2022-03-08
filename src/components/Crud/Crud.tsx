@@ -47,7 +47,7 @@ export const Crud: React.FC = () => {
 
   useEffect(() => {
     if (!filterInput.value) {
-      setOptions((prevOptions) => getOptions(users));
+      setOptions(() => getOptions(users));
       return;
     }
 
@@ -57,7 +57,7 @@ export const Crud: React.FC = () => {
       return fullName.toLowerCase().includes(filterInput.value.toLowerCase());
     });
 
-    setOptions((prevOptions) => getOptions(foundUsers));
+    setOptions(() => getOptions(foundUsers));
   }, [filterInput.value, users]);
 
   const onCreate = () => {
@@ -114,6 +114,7 @@ export const Crud: React.FC = () => {
         <div className={styles.crud__label}>
           <Input
             className={styles.crud__prefix}
+            containerClassName={styles.inputContainer}
             title='Filter Prefix:'
             {...filterInput}
           />
@@ -132,14 +133,16 @@ export const Crud: React.FC = () => {
               </div>
               <div className={styles.form__inputs}>
                 <Input
-                  className={styles.input_data}
                   title='Name:'
                   {...nameInput}
+                  className={styles.input__data}
+                  containerClassName={styles.inputContainer}
                 />
                 <Input
-                  className={styles.input_data}
                   title='Surname:'
                   {...surnameInput}
+                  className={styles.input__data}
+                  containerClassName={styles.inputContainer}
                 />
               </div>
             </div>

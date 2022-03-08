@@ -18,6 +18,7 @@ const DateInput: FC<DateInputProps> = ({
       className={classNames(styles['date-input'], {
         [styles['date-input--invalid']]: invalid,
       })}
+      containerClassName={styles.formItem}
       value={value}
       onChange={onChange}
       disabled={disabled}

@@ -1,15 +1,18 @@
 .wrapper {
     display: flex;
     justify-content: center;
-    margin: 50px;
+    margin: 30px;
 }
 
 .container {
+    width: 100%;
     border: 1px solid #777;
-    border-radius: 3px
+    border-radius: 3px;
 }
 
 .inner-container {
+    display: flex;
+    justify-content: center;
     padding: 30px;
 }
 
@@ -20,3 +23,14 @@
     font-weight: 400;
     border-bottom: 1px solid #777;
 }
+
+
+@media (max-width: 350px) {
+    .wrapper {
+        margin: 10px;
+    }
+
+    .inner-container {
+        padding: 10px;
+    }
+  }

@@ -4,6 +4,7 @@ import { Wrapper } from 'ui';
 
 import { CellBody } from './components/CellBody';
 import { CellHeader } from './components/CellHeader';
+import { RowStartCell } from './components/RowStartCell';
 import { letters, numbers } from './contants';
 import { initialState } from './initialState';
 import {
@@ -71,29 +72,30 @@ export const Cells: React.FC = () => {
     <Wrapper title='Cells'>
       <div className={styles.cells__container}>
         <table className={styles.table}>
-          <tbody>
+          <thead>
             <tr>
               <CellHeader />
               {letters.map((letter) => (
                 <CellHeader key={letter} label={letter} />
               ))}
             </tr>
+          </thead>
+          <tbody>
             {numbers.map((number) => (
               <tr key={number}>
-                <CellHeader label={number} />
+                <RowStartCell label={number} />
                 {letters.map((letter) => {
-                  const id = getIdFromParts(letter, String(number));
+                  const cellId = getIdFromParts(letter, String(number));
 
-                  const values = cells[id] || null;
-
-                  if (values) {
-                    return (
-                      <CellBody key={id} dispatch={dispatch} {...values} />
-                    );
-                  }
+                  const values = cells[cellId] || {};
 
                   return (
-                    <CellBody key={`_${id}`} id={id} dispatch={dispatch} />
+                    <CellBody
+                      key={cellId}
+                      dispatch={dispatch}
+                      {...values}
+                      id={cellId}
+                    />
                   );
                 })}
               </tr>

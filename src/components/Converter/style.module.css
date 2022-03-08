@@ -4,6 +4,7 @@
   justify-content: center;
   font-size: 18px;
   font-weight: 400;
+  gap: 10px;
 }
 
 .separator {
@@ -12,6 +13,8 @@
 
 .item {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .item__title {
@@ -29,4 +32,11 @@
 
 .item__input--error {
   background-color: #ff7f50;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
 }

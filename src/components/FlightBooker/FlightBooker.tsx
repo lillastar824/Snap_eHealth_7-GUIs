@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState, useCallback } from 'react';
+import classNames from 'classnames';
 
 import { Button, Select, Wrapper } from 'ui';
 
@@ -68,30 +69,34 @@ const FlightBooker: FC = () => {
 
   return (
     <Wrapper title='Flight Booker'>
-      <Select
-        id='flightType'
-        name='type'
-        options={flightTypeOptions}
-        onSelect={onSelect}
-        value={flightType}
-      />
-      <DateInput
-        value={oneWayValue}
-        onChange={onChangeOneWay}
-        invalid={!isOneWayValid}
-      />
-      <DateInput
-        value={returnValue}
-        onChange={onChangeReturn}
-        disabled={isReturnDisabled}
-        invalid={!isReturnValid}
-      />
-      <Button
-        label='Book'
-        disabled={!isValidForm}
-        className={styles.button}
-        onClick={onSubmit}
-      />
+      <div className={styles.container}>
+        <Select
+          id='flightType'
+          name='type'
+          options={flightTypeOptions}
+          onSelect={onSelect}
+          value={flightType}
+          containerClassName={styles.formItem}
+          className={styles.formItem}
+        />
+        <DateInput
+          value={oneWayValue}
+          onChange={onChangeOneWay}
+          invalid={!isOneWayValid}
+        />
+        <DateInput
+          value={returnValue}
+          onChange={onChangeReturn}
+          disabled={isReturnDisabled}
+          invalid={!isReturnValid}
+        />
+        <Button
+          label='Book'
+          disabled={!isValidForm}
+          className={classNames(styles.formItem, styles.button)}
+          onClick={onSubmit}
+        />
+      </div>
     </Wrapper>
   );
 };
